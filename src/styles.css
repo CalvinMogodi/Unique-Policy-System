@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "~/font-awesome/scss/font-awesome.scss";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
