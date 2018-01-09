@@ -1,11 +1,33 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-  <a class="navbar-brand" href="#">Unique Policy System</a>
-  <ul class="nav navbar-nav mr-auto">
+<div class="pos-f-t" *ngIf="isMobileMenu()">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h4 class="text-white">Collapsed content</h4>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
+<nav class="navbar navbar-expand-lg navbar-toggleable-md navbar-inverse bg-inverse fixed-top" *ngIf="!isMobileMenu()">
+     <a class="navbar-brand" href="#">Unique Policy System</a>
+  <ul class="nav navbar-nav mr-auto">  
+   
   </ul>
   <ul class="nav navbar-nav mr-auto">
-    <li class="nav-item active" (click)="Navigate('createNewPolicy')">
-      <a class="nav-link" >New Policy <span class="sr-only">(current)</span></a>
-    </li>
+    <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Policy
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" (click)="Navigate('createNewPolicy')" >New Policy <span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+
     <li class="nav-item">
       <a class="nav-link" href="#">About</a>
     </li>

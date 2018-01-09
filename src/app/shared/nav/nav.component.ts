@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+declare const $: any;
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -16,5 +17,12 @@ export class NavComponent implements OnInit {
    Navigate(url){
       this.router.navigate([url]);
     }
+
+    isMobileMenu() {
+      if ($(window).width() > 991) {
+          return false;
+      }
+      return true;
+  };
 
 }

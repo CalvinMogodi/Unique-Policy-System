@@ -1,11 +1,13 @@
 <app-login *ngIf="!isAuthenticated"></app-login>
+
 <div class="wrapper" *ngIf="isAuthenticated">
     <!-- Page Content -->
-    <app-nav></app-nav> 
-    <div id="content" class="main-panel">               
+    
+    <div id="content" class="main-panel">
+        <app-nav></app-nav>        
         <router-outlet></router-outlet>  
+        <app-footer class="footer"></app-footer>
     </div>
-    <app-footer class="footer"></app-footer>
 </div> 
 
 
