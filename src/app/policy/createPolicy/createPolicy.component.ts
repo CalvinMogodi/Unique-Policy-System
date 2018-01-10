@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 const now = new Date();
+declare const $: any;
 @Component({
   selector: 'app-create-policy',
   templateUrl: './createPolicy.component.html',
@@ -44,10 +45,20 @@ curTitle : any = this.titles[0];
 curGender: any = this.genders[0];
 curRegion : any = this.regions[0];
 curMaritalStatus: any = this.maritalStatuses[0];
-  
+step : number = 1;
+policy : {
+  beneficiaries: Array<any>
+};
   constructor(public router: Router) { }
 
   ngOnInit() {
+    $('#newPolicyStep2').hide();
+    $('#newPolicyStep3').hide();
+    $('#newPolicyStep4').hide();
+    $('#newPolicyStep5').hide();
+    $('#newPolicyStep6').hide();
+    $('#newPolicyStep7').hide();
+    this.policy = { beneficiaries : []};
   }
 
   Navigate(url){
@@ -78,6 +89,25 @@ setGender(id: any): void {
     // Match the selected ID with the ID's in array
     this.curMaritalStatus= this.maritalStatuses.filter(value => value.id === parseInt(id));
   }
+  
+  nextStep(): void{
+     var oldDivId = '#newPolicyStep'+ this.step;
+    $(oldDivId).fadeOut('slow');
+    this.step = this.step + 1; 
+    var newDivId = '#newPolicyStep'+ this.step;
+    $(newDivId).fadeIn('slow'); 
+  }
 
+  backStep(): void{
+    var oldDivId = '#newPolicyStep'+ this.step;
+    $(oldDivId).fadeOut('slow');
+    this.step = this.step - 1; 
+    var newDivId = '#newPolicyStep'+ this.step;
+    $(newDivId).fadeIn('slow'); 
+  }
+
+  addBeneficary():void{
+    this.policy.beneficiaries.push({});
+  }
   
 }
