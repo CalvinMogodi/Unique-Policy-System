@@ -42,8 +42,8 @@
                   <div class="col-md-4">
                       <div class="form-group">
                        <small>Date</small> <br>
-                        <select class="my-dropdown" #selectElem (change)="setNewUser(selectElem.value)">
-                          <option class="dropdown-item" *ngFor="let user of lUsers" [value]="user.id">
+                        <select class="my-dropdown">
+                          <option class="dropdown-item" *ngFor="let user of genders" [value]="user.id">
                             {{user.Name}}
                           </option>
                         </select>
@@ -52,8 +52,8 @@
                     <div class="col-md-4">
                       <div class="form-group">
                        <small>Agent</small> <br>
-                        <select class="my-dropdown" #selectElem (change)="setNewUser(selectElem.value)">
-                          <option class="dropdown-item" *ngFor="let user of lUsers" [value]="user.id">
+                        <select class="my-dropdown">
+                          <option class="dropdown-item" *ngFor="let user of genders" [value]="user.id">
                             {{user.Name}}
                           </option>
                         </select>
@@ -62,8 +62,8 @@
                      <div class="col-md-4">
                       <div class="form-group">
                        <small>Broker</small> <br>
-                        <select class="my-dropdown" #selectElem (change)="setNewUser(selectElem.value)">
-                          <option class="dropdown-item" *ngFor="let user of lUsers" [value]="user.id">
+                        <select class="my-dropdown" >
+                          <option class="dropdown-item" *ngFor="let user of genders" [value]="user.id">
                             {{user.Name}}
                           </option>
                         </select>
@@ -193,7 +193,7 @@
                 
                 <div class="row">  
                   <div class="col-md-6">
-                     <button type="button" class="btn cancel-btn" (click)="Cancel()">Cancel</button>
+                     <button type="button" class="btn cancel-btn">Cancel</button>
                       </div>
                       <br>
                        <br>
@@ -468,7 +468,7 @@
                       <br>
                        <br>
                   <div class="col-md-6">
-                     <button type="button" class="btn btn-success next-btn" (click)="confirm()">Confirm</button>
+                     <button type="button" class="btn btn-success next-btn">Confirm</button>
                       </div>
                 </div>
               </form>

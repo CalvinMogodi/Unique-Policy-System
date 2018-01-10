@@ -60,6 +60,6 @@ export class LoginComponent implements OnInit {
 
     Submit(){
       sessionStorage.setItem('currentUser', JSON.stringify({isAuthenticated: true, userType: 'superUser'}));
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['createNewPolicy']);
     }
 }
