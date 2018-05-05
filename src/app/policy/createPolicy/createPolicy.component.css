@@ -213,6 +213,14 @@ table tbody {
   border: 0px;
 }
 
+
+
+.pCard:hover{
+    color: #fff;
+    background-color: #06c5ac;
+    border-color: #06c5ac;
+    cursor: pointer;
+}
 .beneficary-card-body{
   max-height: 150px; 
   overflow-x: auto; 

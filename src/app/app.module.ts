@@ -11,6 +11,19 @@ import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DeshboardComponent } from './deshboard/deshboard.component';
 import { CreatePolicyComponent } from './policy/createPolicy/createPolicy.component';
+import { UserserviceProvider } from '../providers/userservice/userservice';
+
+import * as firebase from 'firebase'
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyDNZ2-urHkW0xoe9rh9aexpp__FeHybkb8",
+    authDomain: "terasherbal-7694e.firebaseapp.com",
+    databaseURL: "https://terasherbal-7694e.firebaseio.com",
+    projectId: "terasherbal-7694e",
+    storageBucket: "terasherbal-7694e.appspot.com",
+    messagingSenderId: "303502211142"
+};
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -20,7 +33,7 @@ import { CreatePolicyComponent } from './policy/createPolicy/createPolicy.compon
     LoginComponent,
     SidebarComponent,
     DeshboardComponent,
-    CreatePolicyComponent
+    CreatePolicyComponent,
   ],
   exports: [RouterModule],
   imports: [
@@ -28,7 +41,9 @@ import { CreatePolicyComponent } from './policy/createPolicy/createPolicy.compon
     AppRoutingModule,
     RouterModule,
   ],
-  providers: [],
+  providers: [
+    UserserviceProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
