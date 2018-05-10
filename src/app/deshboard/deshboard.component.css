@@ -1,0 +1,42 @@
+.padding
+{
+    padding-top: 16px;
+    padding-right: 32px;
+    padding-bottom: 16px;
+}
+
+.body {
+  background-color: #DCDCDC;
+}
+.stat {
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 0 10px;
+}
+
+.striped-bg {
+     background-image: url(/assets/img/bg-strips-light.jpg);
+    background-repeat: repeat;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.fa-4x {
+    font-size: 4em;
+}
+
+.fa {
+    display: inline-block;
+    font: 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0,0);
+}

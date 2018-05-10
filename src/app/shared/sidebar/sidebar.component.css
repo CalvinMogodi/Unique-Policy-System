@@ -5,6 +5,55 @@
 a[data-toggle="collapse"] {
     position: relative;
 }
+.photo-container {
+    margin-top: 5px;
+    overflow: hidden;
+}
+.text-center {
+    text-align: center;
+}
+
+.toggle-menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    height: 43px;
+    width: 40px;
+    background: #333;
+    padding: 11px;
+    font-size: 10px;
+}
+
+a {
+    color: #06c5ac;
+    text-decoration: none;
+}
+
+.striped-bg {
+    background-image: url(/assets/img/bg-strips-light.jpg);
+    background-repeat: repeat;
+}
+
+* {
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+
+#sidenav {
+    border-radius: 0;
+    background-color: #2e2e2e;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    z-index: 1;
+    transition: all .2s ease-in-out;
+    color: #DCDCDC;;
+}
 
 a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     content: '\e259';
@@ -26,4 +75,54 @@ a[aria-expanded="true"]::before {
     #sidebar.active {
         margin-left: 0;
     }
+}
+
+#sidenav .sidebar-top-nav ul.nav-tabs {
+    background-color: #3f3f3f;
+    border: 0;
+    position: relative;
+    top: 63px;
+    overflow: hidden;
+}
+
+.nav-tabs.nav-justified {
+    width: 100%;
+    border-bottom: 0;
+}
+.nav-justified {
+    width: 100%;
+}
+.nav-tabs {
+    border-bottom: 1px solid #ddd;
+}
+.nav {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+* ul {
+    list-style-type: none;
+}
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+* {
+    box-sizing: border-box;
+}
+user agent stylesheet
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+.t-p {
+    padding-top: 15px;
+}
+.text-center {
+    text-align: center;
 }
