@@ -1,0 +1,55 @@
+.stat {
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 0 10px;
+}
+
+.striped-bg {
+     background-image: url(/assets/img/bg-strips-light.jpg);
+    background-repeat: repeat;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.page{
+
+    padding-top: 32px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+.photo-container .dash-profile {
+    width: 90px;
+    border-color: #737272;
+    padding: 2px;
+}
+
+.img-circle {
+    border: 2px solid #fff;
+}
+.img-circle {
+    border-radius: 50%;
+}
+img {
+    vertical-align: middle;
+}
+    .page
+{
+    width: auto !important;
+    padding-top: 2% !important;
+    margin-right: 0px !important;
+    margin-left: 14% !important;
+}
+
+.small-text{
+    font-size: small;
+}

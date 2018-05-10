@@ -14,15 +14,15 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
-   Navigate(url){
-      this.router.navigate([url]);
-    }
+  Navigate(url) {
+    this.router.navigate([url]);
+  }
 
-    isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
+  isMobileMenu() {
+    if ($(window).width() > 991) {
+      return false;
+    }
+    return true;
   };
 
 }

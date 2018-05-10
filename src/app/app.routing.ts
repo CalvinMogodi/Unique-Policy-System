@@ -4,11 +4,11 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DeshboardComponent } from './deshboard/deshboard.component';
-import { CreatePolicyComponent } from './policy/createPolicy/createPolicy.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes =[
     { path: 'dashboard', component: DeshboardComponent },       
-    { path: 'createNewPolicy',component: CreatePolicyComponent }
+    { path: 'user',component: UserComponent }
 ];
 
 @NgModule({

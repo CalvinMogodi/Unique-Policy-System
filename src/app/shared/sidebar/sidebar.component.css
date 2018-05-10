@@ -49,7 +49,7 @@ div {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 250px;
+    width: 230px;
     z-index: 1;
     transition: all .2s ease-in-out;
     color: #DCDCDC;;
@@ -125,4 +125,20 @@ ul, menu, dir {
 }
 .text-center {
     text-align: center;
+}
+
+.photo-container .dash-profile {
+    width: 90px;
+    border-color: #737272;
+    padding: 2px;
+}
+
+.img-circle {
+    border: 2px solid #fff;
+}
+.img-circle {
+    border-radius: 50%;
+}
+img {
+    vertical-align: middle;
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router} from '@angular/router';
 
+declare const $: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,4 +32,11 @@ export class AppComponent {
         }
     });
   }
+
+  isMobileMenu() {
+    if ($(window).width() > 991) {
+      return false;
+    }
+    return true;
+  };
 }

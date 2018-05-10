@@ -5,7 +5,8 @@
     
     <div id="content" class="main-panel">
         <app-nav></app-nav>      
-        <app-sidebar></app-sidebar> 
+        <div *ngIf="!isMobileMenu()"> <app-sidebar></app-sidebar> </div>
+       
         <router-outlet></router-outlet>  
         <app-footer class="footer"></app-footer>
     </div>

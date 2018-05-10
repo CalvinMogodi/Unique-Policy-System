@@ -1,0 +1,42 @@
+<div class="container page">
+    <div class="col-md-12">
+        <div *ngFor='let user of users' class="stat panel striped-bg ng-isolate-scope" bgclass="info" icon="eye" value="71,842" text="Profile Views">
+            <div class="row">
+                <div class="col-md-1 photo-container text-center bg-info icon-col striped-bg text-center">
+                    <img src="assets/img/profile.png" class="img-circle dash-profile">
+                </div>
+                <div class="col-md-11 text-col">
+                    <h2 class="ng-binding row"> &nbsp; {{ user.name }} {{ user.surname }}  <span style="font-size: small; padding-top: 18px;">( {{ user.userType }} )</span></h2>
+                    <div class="row">
+                        <div class="col-md-2 padding">
+                            <b>ID Number</b>
+                            <p class="small-text">{{ user.IDNumber }}</p>
+                        </div>
+                        <div class="col-md-2 padding">
+                            <b>Refference ID</b>
+                            <p class="small-text">{{ user.refferenceId }}</p>
+                        </div>
+                         <div class="col-md-2 padding">
+                            <b>Account Number</b>
+                            <p class="small-text">{{ user.accountNumber }}</p>
+                        </div>
+                        <div class="col-md-2 padding">
+                            <b>Address</b>
+                            <p class="small-text">{{ user.address }}</p>
+                        </div>
+                        <div class="col-md-2 padding">
+                            <b>Cell Phone</b>
+                            <p class="small-text">{{ user.cellPhone }}</p>
+                        </div>
+                        <div class="col-md-2 padding">
+                            <b>Email</b>
+                            <p class="small-text">{{ user.email }}</p>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

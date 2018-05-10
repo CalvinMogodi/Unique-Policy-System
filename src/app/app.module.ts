@@ -12,6 +12,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DeshboardComponent } from './deshboard/deshboard.component';
 import { CreatePolicyComponent } from './policy/createPolicy/createPolicy.component';
 import { UserserviceProvider } from '../providers/userservice/userservice';
+import { UserComponent } from './user/user.component';
 
 import * as firebase from 'firebase'
 
@@ -34,6 +35,7 @@ firebase.initializeApp(firebaseConfig);
     SidebarComponent,
     DeshboardComponent,
     CreatePolicyComponent,
+    UserComponent
   ],
   exports: [RouterModule],
   imports: [
