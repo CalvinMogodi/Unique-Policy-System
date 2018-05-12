@@ -14,6 +14,13 @@
     padding: 0 10px;
 }
 
+.stat .icon-col {
+    text-align: center;
+    height: 110px;
+    padding: 25px 0;
+    color: #fff;
+}
+
 .striped-bg {
      background-image: url(/assets/img/bg-strips-light.jpg);
     background-repeat: repeat;
@@ -28,7 +35,11 @@
 }
 
 .fa-4x {
-    font-size: 4em;
+    font-size: 4em !important;
+}
+
+.fa-5x {
+    font-size: 4em !important;
 }
 
 .fa {
@@ -40,4 +51,19 @@
     -moz-osx-font-smoothing: grayscale;
     transform: translate(0,0);
 }
+
+.stat .text-col .fa {
+    position: absolute;
+    right: -20px !important;;
+    bottom: -40px !important;;
+    color: rgba(0,0,0,.05);
+    font-size: 120px !important;;
+}
+
+.stat .text-col {
+    position: relative;
+    color: #999;
+    padding-left: 25px;
+}
+
 

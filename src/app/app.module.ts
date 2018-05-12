@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app.routing';
 import { provideRoutes} from '@angular/router';
 import { RouterModule } from '@angular/router';
@@ -12,7 +13,9 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DeshboardComponent } from './deshboard/deshboard.component';
 import { CreatePolicyComponent } from './policy/createPolicy/createPolicy.component';
 import { UserserviceProvider } from '../providers/userservice/userservice';
+import { CommonService } from './shared/common';
 import { UserComponent } from './user/user.component';
+import { UserDetailsComponent } from './user/userDetails/userDetails.component';
 
 import * as firebase from 'firebase'
 
@@ -27,7 +30,7 @@ export const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 @NgModule({
-  declarations: [
+  declarations: [     
     AppComponent,
     NavComponent,
     FooterComponent,
@@ -35,16 +38,20 @@ firebase.initializeApp(firebaseConfig);
     SidebarComponent,
     DeshboardComponent,
     CreatePolicyComponent,
-    UserComponent
+    UserComponent,
+    UserDetailsComponent
   ],
   exports: [RouterModule],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    UserserviceProvider
+    UserserviceProvider,
+    CommonService
   ],
   bootstrap: [AppComponent]
 })

@@ -30,11 +30,6 @@ a {
     text-decoration: none;
 }
 
-.striped-bg {
-    background-image: url(/assets/img/bg-strips-light.jpg);
-    background-repeat: repeat;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -45,7 +40,7 @@ div {
 
 #sidenav {
     border-radius: 0;
-    background-color: #2e2e2e;
+    background-color: #32995f;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -129,8 +124,8 @@ ul, menu, dir {
 
 .photo-container .dash-profile {
     width: 90px;
-    border-color: #737272;
-    padding: 2px;
+        border-color: yellow;
+    border-width: 3px;
 }
 
 .img-circle {
