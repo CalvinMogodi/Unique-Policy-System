@@ -1,11 +1,12 @@
 <div class="container page">
     <i class="fa fa-plus-circle pull-right fa-icon" (click)="navigate('userDetails', null)"></i>
     <div class="col-md-12 content">        
-        <div class="loader" *ngIf="loading"></div>
+        <div class="loader" *ngIf="loading">        
+        </div>
         <div *ngFor='let user of users' class="stat panel striped-bg ng-isolate-scope" bgclass="info" icon="eye" value="71,842" text="Profile Views">
             <div class="row" (click)="navigate('userDetails', user)">
                 <div class="col-md-1 photo-container text-center bg-info icon-col striped-bg text-center">
-                    <img src="assets/img/profile.png" class="img-circle " [ngClass]="{'dash-profile-inActive':!user.isActive, 'dash-profile-active': user.isActive}" >
+                    <img [src]="user.profileImgUrl" class="img-circle " [ngClass]="{'dash-profile-inActive':!user.isActive, 'dash-profile-active': user.isActive}" >
                 </div>
                 <div class="col-md-11 text-col">
                     <h2 class="ng-binding row"> &nbsp; {{ user.name }} {{ user.surname }}  <span style="font-size: small; padding-top: 18px;">( {{ user.userType }} )</span></h2>

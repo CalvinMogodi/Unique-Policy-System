@@ -8,7 +8,6 @@ import * as firebase from 'firebase'
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [UserserviceProvider]
 })
 export class LoginComponent implements OnInit {
   showLogin: boolean = true;

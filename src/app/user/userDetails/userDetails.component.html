@@ -1,133 +1,158 @@
 <div class="container">
     <div class="page-title clearfix ng-isolate-scope" pagename="Form Components" subtitle="Bootstrap UI Elements">
         <div class="pull-left">
-            <h3 class="ng-binding">Form Components</h3> <small class="subtitle ng-binding">Bootstrap UI Elements</small>
+            <h3 class="ng-binding" *ngIf="!isEdit">Create New User</h3> <small *ngIf="!isEdit" class="subtitle ng-binding">Please note: this will add the user as employee.</small>
+            <h3 class="ng-binding" *ngIf="isEdit">Edit User</h3> <small *ngIf="isEdit" class="subtitle ng-binding">Only employee's details can be edited.</small>
         </div>
     </div>
     <br>
     <div class="panel panel-primary" style="margin-left: 15px;">
-        <form >
-        <div class="row">
-            <div class="col-md-6 photo-container text-center icon-col striped-bg">
-                <img src="assets/img/profile.png" class="img-circle " [ngClass]="{'dash-profile-inActive':!user.isActive, 'dash-profile-active': user.isActive}">
-            </div>
+        <form [formGroup]="userForm">
+            <div class="row">
+                <div class="text-center" [ngClass]="{'col-md-12':!isUser, 'col-md-6': isUser}">
+                    <div class="photo-container  icon-col striped-bg">
+                        <img [src]="profileImgUrl" class="img-circle " [ngClass]="{'dash-profile-inActive':!user.isActive, 'dash-profile-active': user.isActive}">
 
-            <div class="col-md-6 photo-container center-center icon-col striped-bg" style="text-align: center !important">
-                <img src="assets/img/profile.png" class="center-block">
-                <small class="subtitle ng-binding">Proof Of Payment</small>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
                     </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small class="red">The field above is required.</small>
+                    <input class="text-center " type="file" (change)="fileChangeEvent($event)" placeholder="Select Image" />
+                </div>
+
+
+                <div *ngIf="isEdit" class="col-md-6 photo-container text-center icon-col striped-bg">
+                    <img src="assets/img/profile.png" class="center-block">
+                    <small class="subtitle ng-binding">Proof Of Payment</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-4 control-label">First Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" [value]="user.name" formControlName="name" (input)="user.name = $event.target.value" name="name" required="required" class="form-control underline" id="username">                            
+                        </div>
+                        <div class="error" *ngIf="!userForm.controls.name.valid && (userForm.controls.name.dirty || submitAttempt)">
+                            <small class="red">The field above is required.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-4 control-label">ID Number/ Passport</label>
+                        <div class="col-sm-8">
+                            <input type="text" [value]="user.IDNumber"(input)="user.IDNumber = $event.target.value" formControlName="IDNumber" name="IDNumber" maxlength="13" class="form-control underline"
+                                id="userIDNumber">
+                        </div>
+                        <div class="error" *ngIf="!userForm.controls.IDNumber.valid && (userForm.controls.IDNumber.dirty || submitAttempt)">
+                            <small class="red">The field above is required.</small>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> 
-                        <input type="text" class="form-control underline" id="underline">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-4 control-label">Surname</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="surname" (input)="user.surname = $event.target.value" [value]="user.surname" formControlName="surname" class="form-control underline" id="userSurname">
+                        </div>
+                        <div class="error" *ngIf="!userForm.controls.surname.valid && (userForm.controls.surname.dirty || submitAttempt)">
+                            <small>The field above is required.</small>
+                        </div>
                     </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small>The field above is required.</small>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-4 control-label">Cell Phone</label>
+                        <div class="col-sm-8">
+                            <input type="text" [value]="user.cellPhone" (input)="user.cellPhone = $event.target.value" formControlName="cellPhone" name="cellPhone" class="form-control underline" id="usercellPhone">
+                        </div>
+                        <div class="error" *ngIf="!userForm.controls.cellPhone.valid && (userForm.controls.cellPhone.dirty || submitAttempt)">
+                            <small>The field above is required.</small>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-4 control-label">Email Address</label>
+                        <div class="col-sm-8"> <input type="email" [value]="user.email" (input)="user.email = $event.target.value" formControlName="email" class="form-control underline" id="useremail">
+                        </div>
+                        <div class="error" *ngIf="!userForm.controls.email.valid && (userForm.controls.email.dirty || submitAttempt)">
+                            <small class="red">The field above is required.</small>
+                        </div>
                     </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small class="red">The field above is required.</small>
+                </div>
+                <div class="col-md-6" *ngIf="isEdit">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-4 control-label">Line</label>
+                        <div class="col-sm-8"> <input type="text" class="form-control underline" id="underline">
+                        </div>
+                        <div class="error" *ngIf="!userForm.controls.email.valid && (userForm.controls.email.dirty || submitAttempt)">
+                            <small>The field above is required.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="!isEdit">
+                    <select [ngModel]="user.userType" placeholder="Select Role" name="role" class="underline col-sm-8 dropdown">
+     <option *ngFor="let role of roles" [value]="user.userType" [selected]="user.userType"  name="userType">
+          {{ role }}
+     </option>
+</select>
+                </div>
+            </div>
+            <div class="row" *ngIf="isEdit">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-2 control-label">Line</label>
+                        <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
+                        </div>
+                        <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
+                            <small class="red">The field above is required.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-2 control-label">Line</label>
+                        <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
+                        </div>
+                        <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
+                            <small>The field above is required.</small>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
+            <div class="row" *ngIf="isEdit">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-2 control-label">Line</label>
+                        <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
+                        </div>
+                        <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
+                            <small class="red">The field above is required.</small>
+                        </div>
                     </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small>The field above is required.</small>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <label for="inputtext" class="col-sm-2 control-label">Line</label>
+                        <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
+                        </div>
+                        <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
+                            <small>The field above is required.</small>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
-                    </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small class="red">The field above is required.</small>
-                    </div>
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="!isEdit && !isUser" type="button" (click)="createUser()" class="btn btn-success pull-right margin-15">Create</button>
+                    <button *ngIf="isEdit && !isUser" type="button" class="btn btn-success pull-right margin-15">Update</button>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
-                    </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small>The field above is required.</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
-                    </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small class="red">The field above is required.</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
-                    </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small>The field above is required.</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
-                    </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small class="red">The field above is required.</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group form-inline">
-                    <label for="inputtext" class="col-sm-2 control-label">Line</label>
-                    <div class="col-sm-10"> <input type="text" class="form-control underline" id="underline">
-                    </div>
-                    <div class="error" *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                        <small>The field above is required.</small>
-                    </div>
-                </div>
-            </div>
-        </div>
         </form>
     </div>
 </div>
