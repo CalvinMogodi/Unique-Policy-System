@@ -4,6 +4,7 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app.routing';
 import { provideRoutes} from '@angular/router';
 import { RouterModule } from '@angular/router';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common'
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './shared/nav/nav.component';
@@ -51,7 +52,8 @@ firebase.initializeApp(firebaseConfig);
   ],
   providers: [
     UserserviceProvider,
-    CommonService
+    CommonService,
+    {provide:LocationStrategy, useClass:HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

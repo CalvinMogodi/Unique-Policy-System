@@ -27,7 +27,7 @@
         width: 200px;
     border-color: red;
     border-width: 3px;
-    margin-top: 9%;
+    margin-top: 15px;
     height: 200px;
 }
 
@@ -35,15 +35,24 @@
         width: 200px;
     border-color: green;
     border-width: 3px;
-    margin-top: 9%;
+    margin-top: 15px;
+    height: 200px;
+}
+
+.pop-inActive{
+width: 200px;
+    border-color: red !important;
+    border-width: 3px !important;
+    margin-top: -10px;
     height: 200px;
 }
 
 .img-circle {
     border: 2px solid #fff;
-}
-.img-circle {
     border-radius: 50%;
+}
+.img-pop{
+    border: 2px solid #fff;
 }
 img {
     vertical-align: middle;

@@ -17,7 +17,7 @@
                 <br>
 
                 <div class="input-group">
-                  <input [value]="user.email" formControlName="email" (input)="user.email = $event.target.value" name="email" required="required" type="email" class="form-control"
+                  <input [value]="user.email" formControlName="email" (input)="user.email = $event.target.value" name="email" required="required" type="email" class="form-control underline"
                     placeholder="Username" aria-describedby="basic-addon1"><br><br>
                     
                 </div>
@@ -27,7 +27,7 @@
                 <br>
                 <div class="input-group">
                   <input [value]="user.password" formControlName="password" (input)="user.password = $event.target.value" name="password" required="required" type="password"
-                    class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+                    class="form-control underline" placeholder="Password" aria-describedby="basic-addon1">
                 </div>
                 <div *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty || submitAttempt)">
                       <small class="red">The field above is required.</small>

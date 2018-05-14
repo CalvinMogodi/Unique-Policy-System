@@ -16,17 +16,18 @@ import 'rxjs/add/operator/map';
 export class UserComponent implements OnInit {
     loading: boolean = true;
     users = [];
-    public storageRef: any;
-    constructor(public userService: UserserviceProvider, public router: Router, public commonService: CommonService) {
+    constructor(public userService: UserserviceProvider, public router: Router, public commonService: CommonService) {  
+    }
+    ngOnInit() {
         let usersRef = firebase.database().ref('users');
-        this.storageRef = firebase.storage().ref();
+        let storageRef = firebase.storage().ref();
         usersRef.orderByValue().on("value", snapshot => {
             var userList = [];
             snapshot.forEach((item) => {
-                var starsRef = this.storageRef.child('profileImages/' + item.key);
+                var starsRef = storageRef.child('profileImages/' + item.key);
                 var user = item.val();
+                user.key = item.key;
                 user.profileImgUrl = 'assets/img/profile.png';
-                // Get the download URL
                 starsRef.getDownloadURL().then(function (url) {
                     user.profileImgUrl = url;
                 })
@@ -36,9 +37,6 @@ export class UserComponent implements OnInit {
             this.users = userList;
             this.loading = false;
         });
-    }
-    ngOnInit() {
-
     }
 
     navigate(url, user) {
