@@ -80,7 +80,7 @@
             </div>
             <div class="card-block login-right-div" *ngIf="showForgotPassword">
               <br>
-              <h6 class="card-title">Forgot your password?</h6>
+              <h6 class="card-title">Forgot your password</h6>
               <br>
               <div class="input-group">
                 <input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
@@ -106,21 +106,27 @@
             </div>
             <div class="card-block login-right-div" *ngIf="showChangePassword">
               <br>
-              <h6 class="card-title">Change password?</h6>
+              <h6 class="card-title">Change password</h6>
               <br>
+              <form [formGroup]="changePasswordForm">              
               <div class="input-group">
-                <input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+                <input type="password" (ngModelChange)="validatePasswor()" class="form-control underline" placeholder="New Password" formControlName="cpPassword" (input)="cpUser.cpPassword = $event.target.value" name="cpPassword" required="required" aria-describedby="basic-addon1">
               </div>
+              <div *ngIf="!changePasswordForm.controls.cpPassword.valid && (changePasswordForm.controls.cpPassword.dirty || cpSubmitAttempt)">
+                      <small class="red">The field above is required.</small>                      
+                    </div>
+                    <small class="red" *ngIf="showPasswordError">Password must contain lowercase case, a capital (uppercase) letter, a number and minimun of 6 characters.</small>
               <div class="input-group">
-                <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+                <input type="password" (ngModelChange)="validatePasswor()" class="form-control underline" placeholder="Confirm Password" formControlName="cpConfirmPassword" (input)="cpUser.cpConfirmPassword = $event.target.value" name="cpConfirmPassword" required="required" aria-describedby="basic-addon1">
               </div>
+              <div *ngIf="!changePasswordForm.controls.cpConfirmPassword.valid && (changePasswordForm.controls.cpConfirmPassword.dirty || cpSubmitAttempt)">
+                      <small class="red">The field above is required.</small>
+                     
+                    </div>
+                     <small class="red" *ngIf="showPasswordsError">Passwords do not match.</small>
               <br>
-              <div class="input-group">
-                <input type="password" class="form-control" placeholder="Confirm Password" aria-describedby="basic-addon1">
-              </div>
               <br>
-              <br>
-              <button type="button" class="btn login-btn" (click)="ChangePassword()">Change Password</button>
+              <button type="button" class="btn login-btn" [disabled]="disableChangePassword" (click)="ChangePassword()">Change Password</button>
               <br>
               <br>
               <div class="row">
@@ -128,6 +134,7 @@
                   <a href="#" class="login-link" (click)="OpenAction('Login')">Back to login</a>
                 </div>
               </div>
+              </form>
             </div>
             <div class="card-block login-right-div" *ngIf="showOTP">
               <br>

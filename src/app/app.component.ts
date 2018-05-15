@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase'
 
 declare const $: any;
 @Component({
@@ -8,27 +9,15 @@ declare const $: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  isAuthenticated: boolean = false ; 
+  isAuthenticated: boolean = false;
 
-  constructor(public router : Router) {
+  constructor(public router: Router) {
     router.events.subscribe((url:any) => { 
-      var currentUser = JSON.parse(sessionStorage.getItem('currentUser'));        
-        if(url.url == '/home' || url.url == '/' ){
-          this.isAuthenticated = false ;
-        }
-        else{
-          if(currentUser != null){
-            if(currentUser.isAuthenticated){
-              this.isAuthenticated = true ;
-            }else{
-               this.isAuthenticated = false ;
-            this.router.navigate(['home']); 
-            }            
-          }  else{
-            this.isAuthenticated = false ;
-            this.router.navigate(['home']);            
-          }
-          
+       var currentUser = JSON.parse(sessionStorage.getItem('currentUser'));     
+        if (currentUser != null) {    
+          this.isAuthenticated = true;
+        } else {
+          this.isAuthenticated = false;
         }
     });
   }

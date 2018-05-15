@@ -100,7 +100,7 @@ export class UserDetailsComponent implements OnInit {
       });
         
     }
-
+    
      updateUser() {
         this.submitAttempt = true;
         this.showError = false;

@@ -18,7 +18,7 @@ export class UserserviceProvider {
   public storageRef: any;
   constructor() {
     this.fireAuth = firebase.auth();
-    this.userProfile = firebase.database().ref('users')
+    this.userProfile = firebase.database().ref('users');
     this.storageRef = firebase.storage().ref();
   }
 
@@ -45,38 +45,59 @@ export class UserserviceProvider {
 
   }
 
-  getUsers(email: string, password: string): any {
-    let usersRef = firebase.database().ref('users');
-    return usersRef.orderByValue().on("value", function (snapshot) {
-      var userList = [];
-      snapshot.forEach((item) => {
-        userList.push(item.val());
-        return false;
-      });
-      return userList;
+  getUserProfile(userId: string): any {
+    firebase.database().ref('/users/' + userId).once('value').then(function (snapshot) {
+      var user = snapshot.val();
+      user.key = userId;
+      let starsRef = firebase.storage().ref().child('profileImages/' + userId);
+      starsRef.getDownloadURL().then(function (url) {
+        user.profileImgUrl = url;
+        user;
+      }).catch(function (error) {
+        user;
+    });
     });
   }
 
   updateUser(user: {}, profileImage): any {
-      var updates = {};
-      updates['users/' + user['key'] +'/name'] = user['name'];
-      updates['users/' + user['key'] +'/email'] = user['email'];
-      updates['users/' + user['key'] +'/IDNumber'] = user['IDNumber'];
-      updates['users/' + user['key'] +'/cellPhone'] = user['cellPhone'];
-      updates['users/' + user['key'] +'/surname'] = user['surname'];
-      updates['users/' + user['key'] +'/userType'] = user['userType'];
-    if(profileImage != undefined){
-      firebase.database().ref().update(updates); 
+    var updates = {};
+    updates['users/' + user['key'] + '/name'] = user['name'];
+    updates['users/' + user['key'] + '/email'] = user['email'];
+    updates['users/' + user['key'] + '/IDNumber'] = user['IDNumber'];
+    updates['users/' + user['key'] + '/cellPhone'] = user['cellPhone'];
+    updates['users/' + user['key'] + '/surname'] = user['surname'];
+    updates['users/' + user['key'] + '/userType'] = user['userType'];
+    if (profileImage != undefined) {
+      firebase.database().ref().update(updates);
       return this.inserUserImage(profileImage, user['key'])
-    }else{
-      return firebase.database().ref().update(updates); 
+    } else {
+      return firebase.database().ref().update(updates);
     }
   }
 
-   approveUser(key: string): any {    
+  approveUser(key: string): any {
     var updates = {};
-    updates['users/' + key +'/isActive'] = true;
+    updates['users/' + key + '/isActive'] = true;
     return firebase.database().ref().update(updates);
+  }
+  signOut(){
+    return firebase.auth().signOut();
+  }
+ 
+
+ changeUserLogin(key: string): any {
+    var updates = {};
+    updates['users/' + key + '/changedPassword'] = true;
+    return firebase.database().ref().update(updates);
+  }
+
+  changeUserPassword(newPassword) {
+    var user = firebase.auth().currentUser;
+   return user.updatePassword(newPassword).then(function () {
+      // Update successful.
+    }).catch(function (error) {
+      // An error happened.
+    });
   }
 
   signUpUser(account: {}): any {

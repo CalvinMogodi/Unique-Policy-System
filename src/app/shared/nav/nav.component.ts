@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserserviceProvider } from '../../../providers/userservice/userservice';
 
 declare const $: any;
 @Component({
@@ -9,7 +10,7 @@ declare const $: any;
 })
 export class NavComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public userService: UserserviceProvider) { }
 
   ngOnInit() {
   }
@@ -24,5 +25,12 @@ export class NavComponent implements OnInit {
     }
     return true;
   };
+
+  logout(url) {
+    this.userService.signOut().then(authData => {
+       sessionStorage.setItem('currentUser', JSON.stringify(null));
+       this.router.navigate([url]);
+    });
+  }
 
 }
