@@ -24,7 +24,7 @@
                                         </a>
                                     </li>
                                     <li class="active">
-                                        <a ui-sref="home" ng-click="showSubNav(0)" href="#/dashboard">
+                                        <a ui-sref="home" (click)="navigate('#/stock')" href="#/stock">
                                             <i class="fa fa-product-hunt"></i>
                                             <span class="menu-text" span="">Stock</span>
                                         </a>
@@ -36,9 +36,9 @@
                                         </a>
                                     </li>
                                     <li class="active">
-                                        <a ui-sref="home" ng-click="showSubNav(0)" href="/dashboard">
+                                        <a ui-sref="home" (click)="navigate('#/order')" href="/order">
                                             <i class="fa fa-money"></i>
-                                            <span class="menu-text" span="">Payments</span>
+                                            <span class="menu-text" span="">Orders</span>
                                         </a>
                                     </li>
                                     <li class="active">

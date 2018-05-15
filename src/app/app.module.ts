@@ -17,6 +17,8 @@ import { UserserviceProvider } from '../providers/userservice/userservice';
 import { CommonService } from './shared/common';
 import { UserComponent } from './user/user.component';
 import { UserDetailsComponent } from './user/userDetails/userDetails.component';
+import { StockComponent } from './stock/stock.component';
+
 
 import * as firebase from 'firebase'
 
@@ -40,7 +42,9 @@ firebase.initializeApp(firebaseConfig);
     DeshboardComponent,
     CreatePolicyComponent,
     UserComponent,
-    UserDetailsComponent
+    StockComponent,
+    UserDetailsComponent,
+    
   ],
   exports: [RouterModule],
   imports: [

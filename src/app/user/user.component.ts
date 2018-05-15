@@ -34,7 +34,7 @@ export class UserComponent implements OnInit {
                 userList.push(user);
                 return false;
             });
-            this.users = userList;
+                
             this.loading = false;
         });
     }
