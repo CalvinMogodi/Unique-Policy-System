@@ -17,7 +17,12 @@ export class StockComponent implements OnInit {
     manufactured: number = 0;
     soldTotal: number = 0;
     months = [];
-    model = {
+    monthData = {
+        avaliableTotal: 0,
+        manufactured: 0,
+        soldTotal: 0,
+    };
+    dayData = {
         avaliableTotal: 0,
         manufactured: 0,
         soldTotal: 0,
@@ -37,6 +42,7 @@ export class StockComponent implements OnInit {
         var year = new Date().getFullYear();
         var lastDay = new Date(year, month + 1, 0).getDate();
         var day = new Date(year, month + 1, 0).getDay();
+        this.date.lastDay = lastDay;
         this.date.day = day;
         this.date.month = month + 1;
         this.date.year = year;
@@ -64,19 +70,17 @@ export class StockComponent implements OnInit {
 
         firebase.database().ref('stock').orderByValue().on("value", snapshot => {
             this.avaliableTotal = 0;
-            this.model.manufactured = 0;
+            this.monthData.manufactured = 0;
             snapshot.forEach(item => {
                 var juice = item.val();
                 this.manufactured = this.manufactured + juice.number;
                 var dataCuptured = new Date(juice.dataCuptured);
                 if ((dataCuptured.getMonth() + 1) == this.date.month) {
-                    this.model.manufactured = this.model.manufactured + juice.number;
+                    this.monthData.manufactured = this.monthData.manufactured + juice.number;
+                    if (this.ordersareloaded) {
+                        this.monthData.avaliableTotal = this.monthData.manufactured - this.monthData.soldTotal;
+                    }
                 }
-
-                if (this.ordersareloaded) {
-                    this.model.avaliableTotal = this.model.manufactured - this.model.soldTotal;
-                }
-
                 this.juices.push(juice);
                 return false;
             });
@@ -90,18 +94,17 @@ export class StockComponent implements OnInit {
         firebase.database().ref('orders').orderByValue().on("value", snapshot => {
             this.avaliableTotal = 0;
             this.soldTotal = 0;
-            this.model.avaliableTotal = 0;
-            this.model.soldTotal = 0;
+            this.monthData.avaliableTotal = 0;
+            this.monthData.soldTotal = 0;
             snapshot.forEach(item => {
                 var order = item.val();
                 this.soldTotal = this.soldTotal + order.quantity;
                 var createdDate = new Date(order.createdDate);
                 if ((createdDate.getMonth() + 1) == this.date.month) {
-                    this.model.soldTotal = this.model.soldTotal + order.quantity;
-                }
-
-                if (this.stockisloaded) {
-                    this.model.avaliableTotal = this.model.manufactured - this.model.soldTotal;
+                    this.monthData.soldTotal = this.monthData.soldTotal + order.quantity;
+                    if (this.stockisloaded) {
+                        this.monthData.avaliableTotal = this.monthData.manufactured - this.monthData.soldTotal;
+                    }
                 }
 
                 this.orders.push(order);
@@ -114,34 +117,84 @@ export class StockComponent implements OnInit {
         });
     }
 
-    goToNextMonth() {
-        if (this.date.month == 12) {
-            this.date.year = this.date.year + 1;
-            this.date.month = 1;
+    goToNextMonth() {        
+        if (this.stockisloaded && this.ordersareloaded) {
+            if (this.date.month == 12) {
+                this.date.year = this.date.year + 1;
+                this.date.month = 1;
+            }
+            else {
+                this.date.month = this.date.month + 1;
+            }
+            this.date.lastDay = new Date(this.date.year, this.date.month, 0).getDate();
+            this.changeDate();
+            this.selectedMonthData();
         }
-        else {
-            this.date.month = this.date.month + 1;
-        }
-        this.changeDate();
     }
 
-    selectedMonthData(){
-
+    goToPreviousMonth() {        
+        if (this.stockisloaded && this.ordersareloaded) {
+            if (this.date.month == 1) {
+                this.date.year = this.date.year - 1;
+                this.date.month = 12;
+            }
+            else {
+                this.date.month = this.date.month - 1;
+            }
+            this.date.lastDay = new Date(this.date.year, this.date.month, 0).getDate();
+            this.changeDate();
+            this.selectedMonthData();
+        }
     }
 
-    selectedDayData(){
-
+    selectedMonthData() {
+        this.monthData.avaliableTotal = 0;
+        this.monthData.soldTotal = 0;
+        this.monthData.manufactured = 0;
+        for (let j in this.juices) {
+            var juice = this.juices[j];
+            var dataCuptured = new Date(juice.dataCuptured);
+            if ((dataCuptured.getMonth() + 1) == this.date.month && (dataCuptured.getFullYear()) == this.date.year) {
+                this.monthData.manufactured = this.monthData.manufactured + juice.number;
+                if (this.ordersareloaded) {
+                    this.monthData.avaliableTotal = this.monthData.manufactured - this.monthData.soldTotal;
+                }
+            }
+        }
+        for (let o in this.orders) {
+            var order = this.orders[o];
+            var createdDate = new Date(order.createdDate);
+            if ((createdDate.getMonth() + 1) == this.date.month && (createdDate.getFullYear()) == this.date.year) {
+                this.monthData.soldTotal = this.monthData.soldTotal + order.quantity;
+                this.monthData.avaliableTotal = this.monthData.manufactured - this.monthData.soldTotal;
+            }
+        }
     }
 
-    goToPreviousMonth() {
-        if (this.date.month == 1) {
-            this.date.year = this.date.year - 1;
-            this.date.month = 1;
+    selectedDayData(day: number) {
+        if (this.stockisloaded && this.ordersareloaded) {
+            this.dayData.avaliableTotal = 0;
+            this.dayData.soldTotal = 0;
+            this.dayData.manufactured = 0;
+            for (let j in this.juices) {
+                var juice = this.juices[j];
+                var dataCuptured = new Date(juice.dataCuptured);
+                if ((dataCuptured.getFullYear()) == this.date.year && (dataCuptured.getMonth() + 1) == this.date.month && (dataCuptured.getDate()) == day) {
+                    this.dayData.manufactured = this.dayData.manufactured + juice.number;
+                    if (this.ordersareloaded) {
+                        this.dayData.avaliableTotal = this.dayData.manufactured - this.dayData.soldTotal;
+                    }
+                }
+            }
+            for (let o in this.orders) {
+                var order = this.orders[o];
+                var createdDate = new Date(order.createdDate);
+                if ((createdDate.getFullYear()) == this.date.year && (createdDate.getMonth() + 1) == this.date.month && (createdDate.getDate()) == day) {
+                    this.dayData.soldTotal = this.dayData.soldTotal + order.quantity;
+                    this.dayData.avaliableTotal = this.dayData.manufactured - this.dayData.soldTotal;
+                }
+            }
         }
-        else {
-            this.date.month = this.date.month - 1;
-        }
-        this.changeDate();
     }
 
     changeDate() {
