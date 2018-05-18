@@ -17,27 +17,29 @@
                 <br>
 
                 <div class="input-group">
-                  <input [value]="user.email" formControlName="email" (input)="user.email = $event.target.value" name="email" required="required" type="email" class="form-control underline"
-                    placeholder="Username" aria-describedby="basic-addon1"><br><br>
-                    
+                  <input [value]="user.email" formControlName="email" (input)="user.email = $event.target.value" name="email" required="required"
+                    type="email" class="form-control underline" placeholder="Username" aria-describedby="basic-addon1"><br><br>
+
                 </div>
                 <div *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)">
-                      <small class="red">The field above is required.</small>
-                    </div>
+                  <small class="red">The field above is required.</small>
+                </div>
                 <br>
                 <div class="input-group">
-                  <input [value]="user.password" formControlName="password" (input)="user.password = $event.target.value" name="password" required="required" type="password"
-                    class="form-control underline" placeholder="Password" aria-describedby="basic-addon1">
+                  <input [value]="user.password" formControlName="password" (input)="user.password = $event.target.value" name="password" required="required"
+                    type="password" class="form-control underline" placeholder="Password" aria-describedby="basic-addon1">
                 </div>
                 <div *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty || submitAttempt)">
-                      <small class="red">The field above is required.</small>
-                    </div>
+                  <small class="red">The field above is required.</small>
+                </div>
                 <br>
-                <button type="button" [disabled]="loading" class="btn login-btn" (click)="Login()">                  
-                  Login
-                  <div class="loader" *ngIf="loading"></div>
-                  </button>
+                <button *ngIf="!loading" type="button" [disabled]="loading" class="btn login-btn" (click)="Login()">                  
+                    Login
+                </button>
 
+                <button *ngIf="loading" type="button" [disabled]="loading" class="btn login-btn" (click)="Login()">                  
+                    Loading...   <div class="text-center" > <div class="loader" ></div>           </div>
+                </button>
                 <p *ngIf="showError" style="color: red;font-size:small"> invalid email or password. </p>
                 <br>
                 <br>
@@ -108,32 +110,35 @@
               <br>
               <h6 class="card-title">Change password</h6>
               <br>
-              <form [formGroup]="changePasswordForm">              
-              <div class="input-group">
-                <input type="password" (ngModelChange)="validatePasswor()" class="form-control underline" placeholder="New Password" formControlName="cpPassword" (input)="cpUser.cpPassword = $event.target.value" name="cpPassword" required="required" aria-describedby="basic-addon1">
-              </div>
-              <div *ngIf="!changePasswordForm.controls.cpPassword.valid && (changePasswordForm.controls.cpPassword.dirty || cpSubmitAttempt)">
-                      <small class="red">The field above is required.</small>                      
-                    </div>
-                    <small class="red" *ngIf="showPasswordError">Password must contain lowercase case, a capital (uppercase) letter, a number and minimun of 6 characters.</small>
-              <div class="input-group">
-                <input type="password" (ngModelChange)="validatePasswor()" class="form-control underline" placeholder="Confirm Password" formControlName="cpConfirmPassword" (input)="cpUser.cpConfirmPassword = $event.target.value" name="cpConfirmPassword" required="required" aria-describedby="basic-addon1">
-              </div>
-              <div *ngIf="!changePasswordForm.controls.cpConfirmPassword.valid && (changePasswordForm.controls.cpConfirmPassword.dirty || cpSubmitAttempt)">
-                      <small class="red">The field above is required.</small>
-                     
-                    </div>
-                     <small class="red" *ngIf="showPasswordsError">Passwords do not match.</small>
-              <br>
-              <br>
-              <button type="button" class="btn login-btn" [disabled]="disableChangePassword" (click)="ChangePassword()">Change Password</button>
-              <br>
-              <br>
-              <div class="row">
-                <div class="col-md-12">
-                  <a href="#" class="login-link" (click)="OpenAction('Login')">Back to login</a>
+              <form [formGroup]="changePasswordForm">
+                <div class="input-group">
+                  <input type="password" (ngModelChange)="validatePasswor()" class="form-control underline" placeholder="New Password" formControlName="cpPassword"
+                    (input)="cpUser.cpPassword = $event.target.value" name="cpPassword" required="required" aria-describedby="basic-addon1">
                 </div>
-              </div>
+                <div *ngIf="!changePasswordForm.controls.cpPassword.valid && (changePasswordForm.controls.cpPassword.dirty || cpSubmitAttempt)">
+                  <small class="red">The field above is required.</small>
+                </div>
+                <small class="red" *ngIf="showPasswordError">Password must contain lowercase case, a capital (uppercase) letter, a number and minimun of 6 characters.</small>
+                <div class="input-group">
+                  <input type="password" (ngModelChange)="validatePasswor()" class="form-control underline" placeholder="Confirm Password"
+                    formControlName="cpConfirmPassword" (input)="cpUser.cpConfirmPassword = $event.target.value" name="cpConfirmPassword"
+                    required="required" aria-describedby="basic-addon1">
+                </div>
+                <div *ngIf="!changePasswordForm.controls.cpConfirmPassword.valid && (changePasswordForm.controls.cpConfirmPassword.dirty || cpSubmitAttempt)">
+                  <small class="red">The field above is required.</small>
+
+                </div>
+                <small class="red" *ngIf="showPasswordsError">Passwords do not match.</small>
+                <br>
+                <br>
+                <button type="button" class="btn login-btn" [disabled]="disableChangePassword" (click)="ChangePassword()">Change Password</button>
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <a href="#" class="login-link" (click)="OpenAction('Login')">Back to login</a>
+                  </div>
+                </div>
               </form>
             </div>
             <div class="card-block login-right-div" *ngIf="showOTP">

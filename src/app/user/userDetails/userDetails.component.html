@@ -124,7 +124,7 @@
                 <div class="col-md-6">
                     <button *ngIf="!isEdit && !isUser" type="button" (click)="createUser()" class="btn btn-success pull-right margin-15">Create</button>
                     <button *ngIf="isEdit && !isUser" type="button" (click)="updateUser()" class="btn btn-success pull-right margin-15">Update</button>
-                    <button *ngIf="!user.isActive && isUser" type="button" (click)="approveUser()" class="btn btn-success pull-right margin-15">Approve</button>
+                    <button *ngIf="!user.isActive && isUser" [disabled]="!user.hasUploadedPOP" type="button" (click)="approveUser()" class="btn btn-success pull-right margin-15">Approve</button>
                 </div>
             </div>
         </form>

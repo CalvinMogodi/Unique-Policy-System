@@ -73,7 +73,7 @@ export class StockComponent implements OnInit {
             this.monthData.manufactured = 0;
             snapshot.forEach(item => {
                 var juice = item.val();
-                this.manufactured = this.manufactured + juice.number;
+                this.manufactured = Number(this.manufactured + Number(juice.number));
                 var dataCuptured = new Date(juice.dataCuptured);
                 if ((dataCuptured.getMonth() + 1) == this.date.month) {
                     this.monthData.manufactured = this.monthData.manufactured + juice.number;
@@ -86,6 +86,7 @@ export class StockComponent implements OnInit {
             });
             if (this.ordersareloaded) {
                 this.avaliableTotal = this.manufactured - this.soldTotal;
+                this.loading = false;
             }
 
             this.stockisloaded = true;
@@ -98,7 +99,7 @@ export class StockComponent implements OnInit {
             this.monthData.soldTotal = 0;
             snapshot.forEach(item => {
                 var order = item.val();
-                this.soldTotal = this.soldTotal + order.quantity;
+                this.soldTotal = Number(this.soldTotal + Number(order.quantity));
                 var createdDate = new Date(order.createdDate);
                 if ((createdDate.getMonth() + 1) == this.date.month) {
                     this.monthData.soldTotal = this.monthData.soldTotal + order.quantity;
@@ -112,6 +113,7 @@ export class StockComponent implements OnInit {
             });
             if (this.stockisloaded) {
                 this.avaliableTotal = this.manufactured - this.soldTotal;
+                this.loading = false;
             }
             this.ordersareloaded = true;
         });

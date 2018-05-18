@@ -1,7 +1,13 @@
 <div class="container page">
+    <div>
+     <h2> <i class="fa fa-users fa-icon" style="font-size: 1em !important;"></i>&nbsp;Users</h2>
     <i class="fa fa-plus-circle pull-right fa-icon" (click)="navigate('#/userDetails', null)"></i>
+    </div>
     <div class="col-md-12 content">        
-        <div class="loader" *ngIf="loading">        
+       <div class="text-center" *ngIf="loading">
+            <div class="loader" ></div>    
+            <br>
+              <span style="margin-left: -200px;">Loading...</span>
         </div>
         <div *ngFor='let user of users' class="stat panel striped-bg ng-isolate-scope" bgclass="info" icon="eye" value="71,842" text="Profile Views">
             <div class="row" (click)="navigate('#/userDetails', user)">

@@ -1,10 +1,13 @@
 <div class="container page">
-<div class="col-md-12 calendar-col">
+     <h2> <i class="fa fa-list-alt fa-icon" style="font-size: 1em !important;"></i>&nbsp;Stock</h2>
+<div class="col-md-12 calendar-col text-center">
     <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Welcome Stock!</h3>
-        </div>
         <div class="panel-body">
+             <div class="text-center" *ngIf="loading">
+            <div class="loader" ></div>    
+            <br>
+              <span style="margin-left: 5px;">Loading...</span>
+        </div>
             <div class="row">
                 <div class="col-md-12 text-center" >
                 <h2 class="today">Totals</h2> 

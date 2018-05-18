@@ -18,6 +18,8 @@ import { CommonService } from './shared/common';
 import { UserComponent } from './user/user.component';
 import { UserDetailsComponent } from './user/userDetails/userDetails.component';
 import { StockComponent } from './stock/stock.component';
+import { OrderComponent } from './order/order.component';
+import { ReportsComponent } from './report/report.component';
 
 
 import * as firebase from 'firebase'
@@ -44,7 +46,8 @@ firebase.initializeApp(firebaseConfig);
     UserComponent,
     StockComponent,
     UserDetailsComponent,
-    
+    OrderComponent,
+    ReportsComponent
   ],
   exports: [RouterModule],
   imports: [

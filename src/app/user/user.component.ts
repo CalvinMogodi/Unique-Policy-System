@@ -22,16 +22,16 @@ export class UserComponent implements OnInit {
         let usersRef = firebase.database().ref('users');
         let storageRef = firebase.storage().ref();
         usersRef.orderByValue().on("value", snapshot => {
-            var userList = [];
-            snapshot.forEach((item) => {
+            this.users = [];
+            snapshot.forEach(item => {
                 var starsRef = storageRef.child('profileImages/' + item.key);
                 var user = item.val();
                 user.key = item.key;
                 user.profileImgUrl = 'assets/img/profile.png';
-                starsRef.getDownloadURL().then(function (url) {
+               starsRef.getDownloadURL().then(function (url) {
                     user.profileImgUrl = url;
-                })
-                userList.push(user);
+                });
+                this.users.push(user);
                 return false;
             });
                 
