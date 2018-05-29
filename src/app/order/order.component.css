@@ -88,3 +88,24 @@ img {
     margin-top: -15px;
     font-size: 3em;
 }
+.red{
+        background-color: red;
+    color: white;
+    margin-top: -30px;
+        font-family: latoregular;
+    font-size: 16px;
+    margin-left: -10px;
+    margin-right: -15px;
+    padding-left: 20px;
+}
+
+.green{
+        background-color: green;
+    color: white;
+    margin-top: -30px;
+        font-family: latoregular;
+    font-size: 16px;
+    margin-left: -10px;
+    margin-right: -15px;
+    padding-left: 20px;
+}

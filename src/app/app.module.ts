@@ -14,6 +14,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DeshboardComponent } from './deshboard/deshboard.component';
 import { CreatePolicyComponent } from './policy/createPolicy/createPolicy.component';
 import { UserserviceProvider } from '../providers/userservice/userservice';
+import { OrderServiceProvider } from '../providers/orderservice/orderservice';
 import { CommonService } from './shared/common';
 import { UserComponent } from './user/user.component';
 import { UserDetailsComponent } from './user/userDetails/userDetails.component';
@@ -60,6 +61,7 @@ firebase.initializeApp(firebaseConfig);
   providers: [
     UserserviceProvider,
     CommonService,
+    OrderServiceProvider,
     {provide:LocationStrategy, useClass:HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

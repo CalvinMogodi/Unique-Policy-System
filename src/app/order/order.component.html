@@ -1,4 +1,12 @@
 <div class="container page">
+    <div *ngIf="notification.meaagse != ''">
+        <button type="button" class="close" data-dismiss="modal" style="margin-right: -15px !important;" (click)="closeNotification()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p [ngClass]="{'red':!notification.isSuccessful, 'green': notification.isSuccessful}">
+            {{notification.meaagse}}
+        </p>
+    </div>
     <h2> <i class="fa fa-list-alt fa-icon" style="font-size: 1em !important;"></i>&nbsp;Orders</h2>
     <div class="col-md-12 content">    
         <div class="text-center" *ngIf="loading">
@@ -33,7 +41,7 @@
                             <small>Proof Of Payment</small>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" [disabled]="order.uploadedPOP" (click)="createUser()" class="btn btn-success pull-right margin-15">Approve</button></div>
+                            <button type="button" [disabled]="order.uploadedPOP" (click)="approveOrder(order)" class="btn btn-success pull-right margin-15">Approve</button></div>
                         </div>                    
                 </div>
             </div>

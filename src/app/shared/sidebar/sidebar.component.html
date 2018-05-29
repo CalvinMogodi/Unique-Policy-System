@@ -41,11 +41,17 @@
                                             <span span="">Orders</span>
                                         </a>
                                     </li>
-                                    <li class="menu-text">
-                                        <a ui-sref="home" (click)="navigate('#/reports')" href="#/reports">
+                                    <li >
+                                        <a data-toggle="collapse" href="#collapseReport" >
                                             <i class="fa fa-home"></i>
-                                            <span  span="">Reports</span>
+                                            <span >Reports <i class="fa fa-angle-down pull-right" style="padding-right: 15px; padding-top: 10px;"></i></span>
                                         </a>
+                                         <ul class="collapse" id="collapseReport" style="height: 0px;">
+                                            <li class="menu-text"><i class="fa fa-circle-o"></i> Orders Report</li>
+                                            <li class="menu-text"><i class="fa fa-circle-o"></i> User Report</li>
+                                            <li class="menu-text"><i class="fa fa-circle-o"></i> Excective Report</li>
+
+                                        </ul>
                                     </li>
                                     <!-- <li>
                                         <a data-toggle="collapse" href="#collapseExample">

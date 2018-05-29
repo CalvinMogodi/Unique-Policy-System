@@ -15,7 +15,7 @@ export class UserDetailsComponent implements OnInit {
     showError: boolean = false;
     isEdit: boolean = true;
     isUser: boolean = true;
-    roles = ["Stcok Capturer", "Admin", "Employee"];
+    roles = ["Stcok Capturer", "Admin", "Employee", "Manager"];
     profileImage: any;
     public user: any;
     userForm: FormGroup;

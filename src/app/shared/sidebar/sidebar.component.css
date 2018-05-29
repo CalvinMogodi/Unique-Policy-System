@@ -38,11 +38,15 @@ div {
     display: block;
 }
 
+.menu-text{
+    color: #06c5ac !important;
+}
+    
 
 .menu-text:hover{
- color: seagreen;
- background-color: seagreen;
+ background-color: seagreen  !important;
  font-size: 20px;
+ cursor: pointer
 }
 
 .sidebar-nav{
